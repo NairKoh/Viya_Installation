@@ -1,2 +1,2 @@
-# SAS EP
-SAS EP rpm
+# SAS Viya
+SAS Viya rpm
