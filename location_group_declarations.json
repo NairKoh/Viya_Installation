@@ -1,0 +1,565 @@
+    {
+    "groups": {
+        "AdminServices": {
+            "name": "AdminServices",
+            "description": {
+                "summary": "The AdminServices host group contains services used to support administrative tasks that have transient load."
+            }
+        },
+        "AdvancedAnalytics": {
+            "name": "AdvancedAnalytics",
+            "description": {
+                "summary": "The AdvancedAnalytics host group contains services that provide advanced analytics features."
+            }
+        },
+        "AIoTServices": {
+            "name": "AIoTServices",
+            "description": {
+                "summary": "The AIoTServices host group contains the services for SAS Analytics for IoT."
+            }
+        },
+        "BusinessOrchestration": {
+            "name": "BusinessOrchestration",
+            "description": {
+                "summary": "The BusinessOrchestration host group contains a cluster of one or more servers running SAS Business Orchestration Services handling data exchange between multiple software systems in real-time."
+            }
+        },
+        "CASServices": {
+            "name": "CASServices",
+            "description": {
+                "summary": "The CASServices host group contains services used to interact between the CAS server(s) and the mid-tier services."
+            }
+        },
+        "CognitiveComputingServices": {
+            "name": "CognitiveComputingServices",
+            "description": {
+                "summary": "The CognitiveComputingServices host group contains services for performing common text analytics tasks."
+            }
+        },
+        "CommandLine": {
+            "name": "CommandLine",
+            "description": {
+                "summary": "The CommandLine host group contains command line interfaces for remote interaction with services.",
+                "details": {
+                    "ansible": [
+                        "It should include every host in the deployment."
+                    ]
+                }
+            }
+        },
+        "CommonPlanningService": {
+            "name": "CommonPlanningService",
+            "description": {
+                "summary": "The CommonPlanningService host group contains services to support financial and demand planning."
+            }
+        },
+
+        "cpsdatasvrc": {
+            "name": "cpsdatasvrc",
+            "description": {
+                "summary": "The cpsdatasvrc host group contains SAS PostgresSQL dedicated to Common Planning Service."
+            }
+        },
+        "cpspgpoolc": {
+            "name": "cpspgpoolc",
+            "description": {
+                "summary": "The cpspgpoolc host group contains PG Pool for High Availability PostgresSQL dedicated to Common Planning Service."
+            }
+        },
+        "ComputeServer": {
+            "name": "ComputeServer",
+            "description": {
+                "summary": "The ComputeServer host group contains the Compute Server that executes SAS code on behalf of the Compute Service.",
+                "details": {
+                    "ansible": [
+                        "It supports more than one host during initial deployment for both single-tenant and multi-tenant deployments.",
+                        "If multiple hosts are configured, home directories must be located on shared storage devices as configured by",
+                        "the customer. Examples of shared storage are a shared directory, CAS, or other accessible location. Failover is",
+                        "not supported. In the event of a failure, a session will be established on a different host, and the user must",
+                        "log on to re-establish state. In a multi-tenant environment, hosts are shared across all tenants. Adding additional",
+                        "hosts to this host group after the initial deployment is not currently supported for multi-tenant deployments."
+                    ]
+                }
+            }
+        },
+        "ComputeServices": {
+            "name": "ComputeServices",
+            "description": {
+                "summary": "The ComputeServices host group contains services for launching and accessing the SAS Compute Server."
+            }
+        },
+        "CoreServices": {
+            "name": "CoreServices",
+            "description": {
+                "summary": "The CoreServices host group contains base-level services providing a common feature set to mid-tier services.",
+                "details": {
+                    "ansible": [
+                        "SAS Logon is part of this host group."
+                    ]
+                }
+            }
+        },
+    "DataAgent": {
+        "name": "DataAgent",
+        "description": {
+                "summary": "The DataAgent host group contains services that provide data agent features.",
+                "details": {
+                    "ansible": [
+                        "",
+                        "If the playbook was created using a deployment-type of \"full\" or \"programming\"",
+                        "the DataAgent host group represents the machine that will be the co-located SAS Data Agent,",
+                        "the SAS Data Agent used on the same side of the firewall as SAS Data Preparation.",
+                        "The co-located SAS Data Agent supports having multiple entries at initial deployment.",
+                        "The co-located SAS Data Agent supports adding entries after initial deployment.",
+                        "",
+                        "The machine that is assigned to the DataAgent host group must also also be assigned to at least one of the following",
+                        "host groups: programming, ComputeServer, sas_casserver_primary, sas_casserver_secondary, or sas_casserver_worker.",
+                        "",
+                        "If you do not want to deploy the co-located SAS Data Agent, leave the DataAgent host group blank.",
+                        "",
+                        "If the playbook was created using a deployment-type of \"data-agent-on-premises\",",
+                        "the DataAgent host group represents the machine that will be the remote SAS Data Agent,",
+                        "the SAS Data Agent used on the opposite side of the firewall from SAS Data Preparation.",
+                        "The remote SAS Data Agent does not support having multiple entries at initial deployment.",
+                        "The remote SAS Data Agent does not support adding entries after initial deployment."
+                    ]
+                }
+        }
+    },
+        "DataMining": {
+            "name": "DataMining",
+            "description": {
+                "summary": "The DataMining host group contains services that provide data mining features."
+            }
+        },
+        "DataServices": {
+            "name": "DataServices",
+            "description": {
+                "summary": "The DataServices host group contains services that provide data management features."
+            }
+        },
+        "DecisionManager": {
+            "name": "DecisionManager",
+            "description": {
+                "summary": "The DecisionManager host group contains services that provide applications to support operational management and scoring for models, rules, and decisions."
+            }
+        },
+        "DemandPlanning": {
+            "name": "DemandPlanning",
+            "description": {
+                "summary": "The DemandPlanning host group contains services to support demand forecasting, demand planning & product lifecycle management."
+            }
+        },
+        "GraphBuilderServices": {
+            "name": "GraphBuilderServices",
+            "description": {
+                "summary": "The GraphBuilderServices host group contains services that provide tools to create and edit custom graphs."
+            }
+        },
+        "GridExecution": {
+            "name": "GridExecution",
+            "description": {
+                "summary": "The GridExecution host group contains hosts that will execute grid jobs."
+            }
+        },
+        "GridThinClient": {
+            "name": "GridThinClient",
+            "description": {
+                "summary": "The GridThinClient host group contains a command line client to execute jobs on the grid."
+            }
+        },
+        "HighPerformanceRiskGridInstaller": {
+            "name": "HighPerformanceRiskGridInstaller",
+            "description": {
+                "summary": "Deploys the SAS High-Performance Risk analytics cluster installation script."
+            }
+        },
+        "HomeServices": {
+            "name": "HomeServices",
+            "description": {
+                "summary": "The HomeServices host group contains services that provide SAS Home and its features."
+            }
+        },
+        "MerchandisePlanning": {
+            "name": "MerchandisePlanning",
+            "description": {
+                "summary": "The MerchandisePlanning host group contains services that support the Assortment Planning and Financial Planning solutions."
+            }
+        },
+        "MicroAnalyticService": {
+            "name": "MicroAnalyticService",
+            "description": {
+                "summary": "The MicroAnalyticService host group provides a multi-threaded, low latency program execution service to support execution of decisions, business rules and scoring models."
+            }
+        },
+        "ModelManager": {
+            "name": "ModelManager",
+            "description": {
+                "summary": "The ModelManager host group contains services to assist with organizing, managing and monitoring the contents and lifecycle of statistical and analytical models."
+            }
+        },
+        "ModelServices": {
+            "name": "ModelServices",
+            "description": {
+                "summary": "The ModelServices host group supports registering and organizing models in a common model repository, and publishing models to different destinations.",
+                "details": {
+                    "ansible": [
+                        "The microservices within this group can be integrated with other systems using the REST API."
+                    ]
+                }
+            }
+        },
+        "Operations": {
+            "name": "Operations",
+            "description": {
+                "summary": "The Operations host group contains services that accumulate metric, log, and notification events from RabbitMQ, then process those into CAS tables which are consumed by the SAS Environment Manager application.",
+                "details": {
+                    "ansible": [
+                        "The Operations services utilize applications supplied by the programming host group, so specify a target host that ",
+                        "is included in the programming host group.",
+                        "The Operations host group does not support multiple hosts at this time. Do not put more than one host in the ",
+                        "Operations host group."
+                    ]
+                }
+            }
+        },
+        "ReportServices": {
+            "name": "ReportServices",
+            "description": {
+                "summary": "The ReportServices host group contains services that provide report management features."
+            }
+        },
+        "ReportViewerServices": {
+            "name": "ReportViewerServices",
+            "description": {
+                "summary": "The ReportViewerServices host group contains services that provide report viewing features."
+            }
+        },
+        "RevenueOptimization": {
+            "name": "RevenueOptimization",
+            "description": {
+                "summary": "The RevenueOptimization host group contains services that support retail product lifecycle pricing."
+            }
+        },
+        "ScoringServices": {
+            "name": "ScoringServices",
+            "description": {
+                "summary": "The ScoringServices host group supports definition and execution of scoring jobs for models and other SAS content."
+            }
+        },
+        "StudioViya": {
+            "name": "StudioViya",
+            "description": {
+                "summary": "The StudioViya host group contains services that provide a SAS programming interface."
+            }
+        },
+        "ThemeServices": {
+            "name": "ThemeServices",
+            "description": {
+                "summary": "The ThemeServices host group contains services that provide theme management features."
+            }
+        },
+        "VisualForecasting": {
+            "name": "VisualForecasting",
+            "description": {
+                "summary": "The VisualForecasting host group contains the services for SAS Visual Forecasting."
+            }
+        },
+        "VisualTextAnalytics": {
+            "name": "VisualTextAnalytics",
+            "description": {
+                "summary": "The VisualTextAnalytics host group contains services that provide text analytics features."
+            }
+        },
+        "WorkflowManager": {
+            "name": "WorkflowManager",
+            "description": {
+                "summary": "The WorkflowManager host group contains services and applications to assist with creating workflow definitions, and managing and reporting on in-progress and historical workflow processes."
+            }
+        },
+        "configuratn": {
+            "name": "configuratn",
+            "description": {
+                "summary": "The configuratn host group contains the service that manages customizable configuration for the SAS environment."
+            }
+        },
+        "consul": {
+            "name": "consul",
+            "description": {
+                "summary": "The consul host group contains the Consul server." ,
+                "details": {
+                    "ansible": [
+                        "The number of Consul servers in a cluster is based on the number of server failures your deployment can tolerate. ",
+                        "For more information, go to https://www.consul.io/docs/internals/consensus.html"
+                    ]
+                }
+            }
+        },
+        "elasticsearch": {
+            "name": "elasticsearch",
+            "description": {
+                "summary": "The elasticsearch host group contains the Elasticsearch cluster, which is used by SAS Visual Investigator.",
+                "details": {
+                    "ansible": [
+                        "Machines included in this group may include the following optional group variables:",
+                        "ElasticSearch_IsMaster ElasticSearch_IsData ElasticSearch_QueueSize ElasticSearch_HeapSize",
+                        "The format for these variables would follow: ",
+                        "   <machine name> ElasticSearch_IsMaster=<true/false> ElasticSearch_IsData=<true/false> ElasticSearch_HeapSize=<heap size> ElasticSearch_QueueSize=<queue size>",
+                        "",
+                        "If these variables are not defined explicitly in your inventory file, they will assume the following default values:",
+                        "   ElasticSearch_IsMaster=true ElasticSearch_IsData=true ElasticSearch_HeapSize=8g ElasticSearch_QueueSize=1000",
+                        "",
+                        "ElasticSearch_IsMaster and ElasticSearch_IsData define which nodes act as master and/or data nodes in a cluster.",
+                        "A valid cluster must contain at least one data node and one master node. A node can be both a data and a master node",
+                        "if both are set to true.",
+                        "",
+                        "The ElasticSearch_HeapSize should not exceed half of the total memory of the",
+                        "machine where it is being deployed. Refer to the Elasticsearch documentation at",
+                        "https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html",
+                        "for additional information on setting the heap size.",
+                        "",
+                        "The ElasticSearch_QueueSize can be set above 1000 but should never go below",
+                        "1000. Refer to the Elasticsearch documentation at",
+                        "https://www.elastic.co/guide/en/elasticsearch/reference/2.0/modules-threadpool.html for additional information",
+                        "on the thread pool queue size.",
+                        "",
+                        "A basic single machine deployment can be defined as such:",
+                        "   machine1",
+                        "",
+                        "A typical line would look like this using explicit values:",
+                        "   machine1 ElasticSearch_IsMaster=true ElasticSearch_IsData=false ElasticSearch_HeapSize=8g ElasticSearch_QueueSize=1000",
+                        "",
+                        "A single machine line would look like this:",
+                        "   machine1 ElasticSearch_IsMaster=true ElasticSearch_IsData=true ElasticSearch_HeapSize=8g ElasticSearch_QueueSize=1000"
+                    ]
+                }
+            }
+        },
+        "espServer": {
+            "name": "espServer",
+            "description": {
+                "summary": "The SAS Event Stream Processing engine is a design and execution environment for event stream processing models.",
+                "details": {
+                    "ansible": [
+                        "An event stream processing model receives events and applies actionable intelligence via complex graphs of relations, pattern matching,",
+                        "and analytics nodes. SAS Event Stream Processing is designed for very high throughput and very low latency."
+                    ]
+                }
+            }
+        },
+        "espStreamviewer": {
+            "name": "espStreamviewer",
+            "description": {
+                "summary": "The SAS Event Stream Processing Streamviewer application is a web application that allows for the design and execution of real-time graphical dashboards.",
+                "details": {
+                    "ansible": [
+                        "Dashboards may be created, saved, monitored, and emailed. SAS Event Stream Processing Streamviewer is the visual front end for",
+                        "monitoring running event stream processing models."
+                    ]
+                }
+            }
+        },
+        "espStudio": {
+            "name": "espStudio",
+            "description": {
+                "summary": "SAS Event Stream Processing Studio is a web-based application for the design and testing of event stream processing models.",
+                "details": {
+                    "ansible": [
+                        "It provides a visual interface for creating the directed graphs of event stream processing windows that are executed by the SAS Event Stream Processing engine."
+                    ]
+                }
+            }
+        },
+		"HealthServices": {
+            "name": "HealthServices",
+            "description": {
+                "summary": "The SAS: Health host group contains the services for SAS: Health solutions."
+            }
+		},
+        "httpproxy": {
+            "name": "httpproxy",
+            "description": {
+                "summary": "The httpproxy host group contains HTTP Proxy Server."
+            }
+        },
+        "pgpool": {
+            "name": "pgpool",
+            "description": {
+                "summary": "pgpool works with pgpoolc for PostgreSQL.",
+                "details": {
+                    "ansible": [
+                        "It should be deployed on every host that pgpoolc is deployed on.",
+                        "It should not be deployed on a host on which pgpoolc is not being deployed."
+                    ]
+                }
+            }
+        },
+        "pgpoolc": {
+            "name": "pgpoolc",
+            "description": {
+                "summary": "The pgpoolc host group contains PG Pool for High Availability PostgreSQL.",
+                "details": {
+                    "ansible": [
+                        "Watchdog is a sub process of Pgpool-II to add high availability. Watchdog is used to resolve the single point of failure by coordinating multiple pgpool-II nodes.",
+                        "The Watchdog sub process is used to ensure of a quorum at all times and guards against the split-brain syndrome and network partitioning",
+                        "When clustering PGPool the number of pgpoolc nodes must be odd in number and greater than or equal to 3 for a given cluster."
+                    ]
+                }
+            }
+        },
+        "programming": {
+            "name": "programming",
+            "description": {
+                "summary": "The programming host group contains SAS Foundation, SAS Studio, SAS Workspace Server, SAS/CONNECT and any SAS/ACCESS engines.",
+                "details": {
+                    "ansible": [
+                        "It has the same conditions as ComputeServer."
+                    ]
+                }
+            }
+        },
+        "RiskServices": {
+            "name": "RiskServices",
+            "description": {
+                "summary": "The RiskServices host group contains the services for Risk Management solutions."
+            }
+        },
+        "RiskModelingServices": {
+            "name": "RiskModelingServices",
+            "description": {
+                "summary": "The RiskModelingServices host group contains services that provide risk modeling features."
+            }
+        },
+        "rabbitmq": {
+            "name": "rabbitmq",
+            "description": {
+                "summary": "The rabbitmq host group contains Rabbit MQ, a messaging broker.",
+                "details": {
+                    "ansible": [
+                        "The deployment will take the first entry in this host list as the \"primary\"",
+                        "machine to initialize the cluster. After that deployment, if you adjust the",
+                        "inventory and place a different entry as the first Rabbit MQ machine, you will",
+                        "run the risk two distinct Rabbit MQ clusters running independently with no",
+                        "knowledge of each other and messages split between the two.",
+                        "",
+                        "A RabbitMQ cluster must have an odd number of machines."
+                    ]
+                }
+            }
+        },
+        "sas-casserver-primary": {
+            "name": "sas_casserver_primary",
+            "description": {
+                "summary": "The sas_casserver_primary host group contains the CAS controller node.",
+                "details": {
+                    "ansible": [
+                        "The first host in the sas_casserver_primary list is used by the tenant in a single-tenant deployment or by the",
+                        "provider in a multi-tenant deployment. Only one configuration of CAS (including one primary controller and one",
+                        "secondary controller) per tenant is supported. Therefore, if you change the first host in the list, you are",
+                        "changing the primary CAS controller for a single-tenant deployment or, for multi-tenant deployments, you",
+                        "are changing the primary CAS controller for the provider. Any additional hosts in the sas_casserver_primary",
+                        "list are used in a multi-tenant environment. The configuration for those additional hosts (primary controller,",
+                        "secondary controller, or worker) are determined by the tenant-vars.yml file.",
+                        "For more information about the tenant-vars.yml file, see the SAS Viya Administration documentation."
+                    ]
+                }
+            }
+        },
+        "sas-casserver-secondary": {
+            "name": "sas_casserver_secondary",
+            "description": {
+                "summary": "The sas_casserver_secondary host group can be used to create a CAS backup controller node.",
+                "details": {
+                    "ansible": [
+                        "This is an optional node that can take over for the primary CAS controller node if it fails. It is used only by",
+                        "the tenant in a single-tenant deployment or by the provider in a multi-tenant deployment. Secondary controllers",
+                        "for additional tenants are determined by the tenant-vars.yml file. To support failover for predefined libraries,",
+                        "a shared file system must be available for the primary and secondary controllers. Each CAS cluster can have only",
+                        "one CAS backup controller node.",
+                        "For more information about the shared file system, see the SAS Viya deployment documentation."
+                    ]
+                }
+            }
+        },
+        "sas-casserver-worker": {
+            "name": "sas_casserver_worker",
+            "description": {
+                "summary": "The sas_casserver_worker host group contains CAS worker node.",
+                "details": {
+                    "ansible": [
+                        "It is used only by the tenant in a single-tenant deployment or by the provider in a multi-tenant deployment. Workers",
+                        "for additional tenants are determined by the tenant-vars.yml file.",
+                        "For more information about the tenant-vars.yml file, see the SAS Viya Administration documentation."
+                     ]
+                }
+
+            }
+        },
+        "sasdatasvrc": {
+            "name": "sasdatasvrc",
+            "description": {
+                "summary": "The sasdatasvrc host group contains SAS PostgreSQL."
+            }
+        },
+        "subjectcontacts": {
+            "name": "subjectcontacts",
+            "description": {
+            "summary": "The subjectcontacts host group contains a service of SAS Intelligent Decisioning that records contacts and responses of treatments."
+            }
+        },
+        "sviconfig": {
+            "name": "sviconfig",
+            "description": {
+                "summary": "The sviconfig host group contains deployment-specific elements of SAS Visual Investigator."
+            }
+        },
+        "viprAlert": {
+            "name": "viprAlert",
+            "description": {
+                "summary": "The viprAlert host group contains Alert elements of SAS Visual Investigator."
+            }
+        },
+        "viprCommon": {
+            "name": "viprCommon",
+            "description": {
+                "summary": "The viprCommon host group contains the common parts of SAS Visual Investigator."
+            }
+        },
+        "viprESM": {
+            "name": "viprESM",
+            "description": {
+                "summary": "The viprESM host group contains elements of SAS Event Stream Manager."
+            }
+        },
+        "viprESMESP": {
+            "name": "viprESMESP",
+            "description": {
+                "summary": "The viprESMESP host group contains elements of SAS Event Stream Manager Agent."
+            }
+        },
+        "viprEntity": {
+            "name": "viprEntity",
+            "description": {
+                "summary": "The viprEntity host group contains Entity Resolution elements of SAS Visual Investigator."
+            }
+        },
+        "viprSand": {
+            "name": "viprSand",
+            "description": {
+                "summary": "The viprSand host group contains the Search and Discovery and Network Analysis elements of SAS Visual Investigator."
+            }
+        },
+        "viprVi": {
+            "name": "viprVi",
+            "description": {
+                "summary": "The viprVi host group contains the core parts of SAS Visual Investigator."
+            }
+        },
+        "viprVsd": {
+            "name": "viprVsd",
+            "description": {
+                "summary": "The viprVsd host group contains the Scenario Designer elements of SAS Visual Investigator."
+            }
+        }
+    }
+}
